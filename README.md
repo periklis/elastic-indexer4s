@@ -1,7 +1,7 @@
 ## ElasticIndexer4s
 
-[![Build Status](https://travis-ci.org/yannick-cw/elastic-indexer4s.svg?branch=master)](https://travis-ci.org/yannick-cw/elastic-indexer4s)
-[![Coverage Status](https://coveralls.io/repos/github/yannick-cw/elastic-indexer4s/badge.svg?branch=master)](https://coveralls.io/github/yannick-cw/elastic-indexer4s?branch=master)
+[![Build Status](https://travis-ci.org/periklis/elastic-indexer4s.svg?branch=master)](https://travis-ci.org/periklis/elastic-indexer4s)
+[![Coverage Status](https://coveralls.io/repos/github/periklis/elastic-indexer4s/badge.svg?branch=master)](https://coveralls.io/github/periklis/elastic-indexer4s?branch=master)
 
 
 ### Overview
@@ -17,18 +17,18 @@ At work we had multiple scala jobs running to write elasticseach indices. These 
 nightly basis and each one had its own implementation and follow up for switching to the new alias and deleting old indices.
 So this is a perfect place to generify this task. This library does exactly that for your, write to elasticsearch and
 afterwards optionally switch the alias to the newly written index and delete old versions of the index.
-The only thing you have to provide are some settings, an `akka.stream.scaladsl.Source[A]` and a `com.sksamuel.elastic4s.Indexable[A]`. 
+The only thing you have to provide are some settings, an `akka.stream.scaladsl.Source[A]` and a `com.sksamuel.elastic4s.Indexable[A]`.
 
 
 ### Getting Started
 
-ElasticIndexer4s is currently available for Scala 2.12, if you need it for scala 2.11 open an issue.
+ElasticIndexer4s is currently available for Scala 2.12.
 
 To get started with SBT, simply add the following to your `build.sbt`
 file:
 
 ```scala
-libraryDependencies += "io.github.yannick-cw" % "elastic_indexer4s_2.12" % "0.2"
+libraryDependencies += "eu.nefeli.periklis" % "elastic_indexer4s_2.12" % "0.4.1"
 ```
 
 First you need a Configuration:
@@ -113,13 +113,13 @@ with analyzers and mappings defined in elastic4s syntax or pass a
  StringMappingSetting.unsafeString(source: String): Either[ParsingFailure, MappingSetting]
  ```
  which gives you a `parsingFailure` on creation if the string can't be parsed to json.
- 
+
  The `.from([source])` method requires you to give an `Indexable` for the elements to be indexed. Alternatively
  you can use `.fromBuilder`, if you want to give an implicit `RequestBuilder`. This allows for more configuration
  for the indexing, e.g. you can specify which `id` or which `timestamp` to use.
- 
+
  #### Alias switching
- 
+
  You can add the `.switchAliasFrom` step to the process of writing, if you want to switch an alias from
  an old index to the newly written one. If no old index with this alias was found, the new index gets
  the alias without switching.
@@ -132,7 +132,7 @@ with analyzers and mappings defined in elastic4s syntax or pass a
  new index is allowed to have to allow switching.
 
  #### Index deletion
- 
+
  Another optional step is `.deleteOldIndices` which allows you to clean up old indices.
  It has two paramters
  ```scala
@@ -147,7 +147,6 @@ For writing the stream to elasticsearch a `system` and `materializer` are needed
 Additionally you can pass in a `Decider` before starting to write, to control what happens on failure in the stream.
 ```scala
 ElasticIndexer4s(config)
-    .withDecider(decider)  
+    .withDecider(decider)
     .from(dummySource)
 ```
-

@@ -1,4 +1,4 @@
-sonatypeProfileName := "io.github.yannick-cw"
+sonatypeProfileName := "eu.nefeli.periklis"
 
 publishMavenStyle := true
 
@@ -7,7 +7,7 @@ publishArtifact in Test := false
 pomIncludeRepository := { _ => false }
 
 pomExtra in Global := {
-  <url>https://github.com/yannick-cw/elastic-indexer4s</url>
+  <url>https://github.com/periklis/elastic-indexer4s</url>
     <licenses>
       <license>
         <name>MIT</name>
@@ -15,15 +15,15 @@ pomExtra in Global := {
       </license>
     </licenses>
     <scm>
-      <connection>scm:git:github.com/yannick-cw/elastic-indexer4s</connection>
-      <developerConnection>scm:git:git@github.com:yannick-cw/elastic-indexer4s</developerConnection>
-      <url>github.com/yannick-cw/elastic-indexer4s</url>
+      <connection>scm:git:github.com/periklis/elastic-indexer4s</connection>
+      <developerConnection>scm:git:git@github.com:periklis/elastic-indexer4s</developerConnection>
+      <url>github.com/periklis/elastic-indexer4s</url>
     </scm>
     <developers>
       <developer>
-        <id>7374</id>
-        <name>Yannick Gladow</name>
-        <url>https://github.com/yannick-cw</url>
+        <id>periklis</id>
+        <name>Periklis Tsirakidis</name>
+        <url>https://github.com/periklis</url>
       </developer>
     </developers>
 }

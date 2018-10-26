@@ -5,7 +5,7 @@ lazy val root = (project in file(".")).
     inThisBuild(List(
       scalaVersion := "2.12.7",
       version      := "0.4.1",
-      organization := "io.github.yannick-cw",
+      organization := "eu.nefeli.periklis",
       fork in run := true
     )),
     name := "elastic_indexer4s",
